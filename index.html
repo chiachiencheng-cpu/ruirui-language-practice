@@ -116,13 +116,32 @@ function pickQuestions(lv){
 }
 
 function speak(text){
-  if(!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
+  const fb = document.getElementById('feedback');
+  if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)){
+    if(fb){
+      fb.textContent = '此瀏覽器不支援語音，請改用 Safari 或 Chrome 開啟';
+      fb.style.color = 'var(--warning-text)';
+    }
+    return;
+  }
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  synth.resume();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'zh-TW'; u.rate = 0.85;
+  u.lang = 'zh-TW'; u.rate = 0.82; u.volume = 1;
+  const voices = synth.getVoices();
+  const zhVoice = voices.find(v => /^zh-TW/i.test(v.lang))
+    || voices.find(v => /^zh/i.test(v.lang));
+  if(zhVoice) u.voice = zhVoice;
   const p = document.getElementById('promptText');
   if(p){ u.onstart = () => p.style.background = 'var(--accent-bg)'; u.onend = () => p.style.background = 'transparent'; }
-  speechSynthesis.speak(u);
+  u.onerror = () => {
+    if(fb){
+      fb.textContent = '語音播放失敗，請用 Safari 或 Chrome 開啟並確認媒體音量';
+      fb.style.color = 'var(--warning-text)';
+    }
+  };
+  synth.speak(u);
 }
 
 function renderLevelSelect(){
@@ -189,9 +208,10 @@ async function renderQuestion(){
     <div style="display:flex; gap:6px; justify-content:center; margin-bottom:1.5rem;">${dots}</div>
     <div class="badge">${q.cat}</div>
     <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:2rem;">
-      <button id="speakBtn" aria-label="播放語音" style="width:48px; height:48px; border-radius:50%; padding:0; font-size:20px;">🔊</button>
+      <button id="speakBtn" aria-label="播放題目語音" style="width:56px; height:56px; border-radius:50%; padding:0; font-size:24px;">🔊</button>
       <p id="promptText" style="font-size:18px; font-weight:600; margin:0; padding:6px 10px; border-radius:6px; transition:background 0.2s;">${q.prompt}</p>
     </div>
+    <p style="font-size:13px; color:var(--text-muted); margin:-1.25rem 0 1.5rem;">點一下喇叭播放題目</p>
     <div id="options" style="display:flex; flex-direction:column; gap:14px;">
       ${q.options.map((opt,i) => `<button data-i="${i}" class="optBtn" style="height:64px; font-size:18px;">${opt}</button>`).join('')}
     </div>
@@ -228,7 +248,6 @@ async function renderQuestion(){
     };
   });
   document.getElementById('nextBtn').onclick = () => { idx++; renderQuestion(); };
-  speak(q.prompt);
 }
 
 (async function init(){
