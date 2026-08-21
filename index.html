@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>語言練習 - 睿睿</title>
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --surface: #FFFFFF;
+    --text: #3A3532;
+    --text-muted: #8A837B;
+    --accent: #6FA8A0;
+    --accent-bg: #E4F0EE;
+    --success: #4C9A6E;
+    --success-bg: #E4F3E9;
+    --warning-text: #B5762E;
+    --warning-bg: #FBEDE0;
+    --border: #E4DED5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px 16px 48px;
+  }
+  .card { max-width: 480px; margin: 0 auto; text-align: center; }
+  button {
+    font-family: inherit; cursor: pointer;
+    border: 2px solid var(--border); background: var(--surface); color: var(--text);
+    border-radius: 16px;
+  }
+  button:active { transform: scale(0.98); }
+  .optBtn { width: 100%; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 14px; border-radius: 999px;
+    background: var(--accent-bg); color: var(--accent); font-size: 13px; margin-bottom: 1.25rem;
+  }
+</style>
+</head>
+<body>
+<h1 style="font-size:1px;color:transparent;position:absolute;">睿睿的家庭生活語言練習</h1>
+<div id="app" class="card"></div>
+<script>
+const CHILD_ID = "ruirui";
+const BANK = {
+  basic: [
+    { id:"family-basic-1", cat:"日常作息", prompt:"吃晚餐前,要先做什麼?", options:["洗手","看電視"], correct:0 },
+    { id:"family-basic-2", cat:"社交語用", prompt:"爸爸下班回家了,你會說什麼?", options:["爸爸回來了","再見"], correct:0 },
+    { id:"family-basic-3", cat:"需求表達", prompt:"肚子餓的時候,你會去哪裡?", options:["廚房","浴室"], correct:0 },
+    { id:"family-basic-4", cat:"情緒", prompt:"媽媽今天生病了,她可能會覺得怎麼樣?", options:["不舒服","很舒服"], correct:0 },
+    { id:"family-basic-5", cat:"日常作息", prompt:"睡覺前要跟誰說晚安?", options:["家人","陌生人"], correct:0 },
+    { id:"family-basic-6", cat:"社交語用", prompt:"哥哥幫你撿玩具,你會說什麼?", options:["謝謝","掰掰"], correct:0 },
+    { id:"family-basic-7", cat:"需求表達", prompt:"看到餐桌上的飯,你會說什麼?", options:["我要吃飯","我要洗澡"], correct:0 },
+    { id:"family-basic-8", cat:"日常作息", prompt:"假日全家人一起去哪裡?", options:["公園","醫院"], correct:0 }
+  ],
+  mid: [
+    { id:"family-mid-1", cat:"需求表達", prompt:"你想要媽媽陪你玩,你會說什麼?", options:["媽媽陪我玩","我不要你"], correct:0 },
+    { id:"family-mid-2", cat:"社交語用", prompt:"爺爺奶奶來家裡,你會說什麼?", options:["爺爺奶奶好","我不認識你"], correct:0 },
+    { id:"family-mid-3", cat:"情緒", prompt:"弟弟搶走你的玩具,你會說什麼?", options:["這是我的玩具","我不在乎"], correct:0 },
+    { id:"family-mid-4", cat:"需求表達", prompt:"媽媽說要收拾玩具了,你應該做什麼?", options:["把玩具放回箱子","繼續玩"], correct:0 },
+    { id:"family-mid-5", cat:"社交語用", prompt:"爸爸做的晚餐很好吃,你會說什麼?", options:["謝謝爸爸,很好吃","我不要吃"], correct:0 },
+    { id:"family-mid-6", cat:"情緒", prompt:"你很想念出差的爸爸,你會說什麼?", options:["我好想爸爸","我不想你"], correct:0 },
+    { id:"family-mid-7", cat:"需求表達", prompt:"你想幫忙擺碗筷,你會說什麼?", options:["我可以幫忙嗎","我不要"], correct:0 },
+    { id:"family-mid-8", cat:"社交語用", prompt:"睡前爸爸媽媽跟你說晚安,你會怎麼回答?", options:["晚安","早安"], correct:0 }
+  ],
+  causal: [
+    { id:"family-causal-1", cat:"因果關係", prompt:"弟弟把玩具丟到地上,所以媽媽會怎麼做?", options:["提醒他要收玩具","開心鼓掌"], correct:0 },
+    { id:"family-causal-2", cat:"因果關係", prompt:"爸爸下班很累,所以他想要做什麼?", options:["休息一下","去跑步"], correct:0 },
+    { id:"family-causal-3", cat:"因果關係", prompt:"媽媽在講電話,所以你應該怎麼做?", options:["安靜等一下","大聲說話"], correct:0 },
+    { id:"family-causal-4", cat:"因果關係", prompt:"妹妹把果汁打翻了,所以桌子變得怎麼樣?", options:["濕濕的","乾乾的"], correct:0 },
+    { id:"family-causal-5", cat:"因果關係", prompt:"因為今天是爺爺生日,所以全家人會做什麼?", options:["一起慶生","各自出門"], correct:0 },
+    { id:"family-causal-6", cat:"因果關係", prompt:"哥哥考試考得很好,所以爸媽的心情會怎麼樣?", options:["很高興","很生氣"], correct:0 },
+    { id:"family-causal-7", cat:"因果關係", prompt:"因為妹妹生病了,所以媽媽會帶她去哪裡?", options:["看醫生","去公園玩"], correct:0 },
+    { id:"family-causal-8", cat:"因果關係", prompt:"因為家裡停電了,所以家人會怎麼做?", options:["找手電筒","去游泳"], correct:0 }
+  ]
+};
+const SESSION_LENGTH = 8;
+
+const levelInfo = {
+  basic: { label: "基礎", desc: "標記與聽指令" },
+  mid: { label: "中階", desc: "情境選詞、表達句" },
+  causal: { label: "進階", desc: "因果關係推理句" }
+};
+
+let progress = { totalStars: 0, masteredIds: [], lastPlayed: null };
+let level = null, questions = [], idx = 0, score = 0, answered = false, correctFlags = [];
+
+async function loadProgress(){
+  try {
+    const saved = localStorage.getItem('progress:' + CHILD_ID);
+    if(saved) progress = JSON.parse(saved);
+  } catch(e) {}
+}
+async function saveProgress(){
+  try {
+    progress.lastPlayed = new Date().toISOString();
+    localStorage.setItem('progress:' + CHILD_ID, JSON.stringify(progress));
+  } catch(e) {}
+}
+
+function pickQuestions(lv){
+  const pool = BANK[lv];
+  const fresh = pool.filter(q => progress.masteredIds.indexOf(q.id) === -1);
+  let picked = fresh.slice(0, SESSION_LENGTH);
+  if(picked.length < SESSION_LENGTH){
+    const need = SESSION_LENGTH - picked.length;
+    const already = new Set(picked.map(q => q.id));
+    const rest = pool.filter(q => !already.has(q.id)).slice(0, need);
+    picked = picked.concat(rest);
+  }
+  return picked.slice(0, Math.min(SESSION_LENGTH, pool.length));
+}
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-TW'; u.rate = 0.85;
+  const p = document.getElementById('promptText');
+  if(p){ u.onstart = () => p.style.background = 'var(--accent-bg)'; u.onend = () => p.style.background = 'transparent'; }
+  speechSynthesis.speak(u);
+}
+
+function renderLevelSelect(){
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <p style="font-size:16px; color:var(--text-muted); margin:16px 0 6px;">睿睿目前累積星星:${progress.totalStars} 顆</p>
+    <p style="font-size:16px; margin:0 0 1.5rem;">選擇今天的練習難度</p>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      ${Object.keys(levelInfo).map(k => `
+        <button data-k="${k}" class="levelBtn" style="text-align:left; padding:16px 18px; display:flex; flex-direction:column; gap:2px;">
+          <span style="font-size:17px; font-weight:600;">${levelInfo[k].label}</span>
+          <span style="font-size:13px; color:var(--text-muted);">${levelInfo[k].desc}</span>
+        </button>`).join('')}
+    </div>`;
+  document.querySelectorAll('.levelBtn').forEach(btn => {
+    btn.onclick = () => {
+      level = btn.dataset.k;
+      questions = pickQuestions(level);
+      idx = 0; score = 0; correctFlags = [];
+      renderQuestion();
+    };
+  });
+}
+
+function starBadge(filled){
+  return filled
+    ? `<div style="width:34px;height:34px;border-radius:50%;background:var(--warning-bg);display:flex;align-items:center;justify-content:center;font-size:18px;">★</div>`
+    : `<div style="width:34px;height:34px;border-radius:50%;border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--border);">★</div>`;
+}
+
+async function renderQuestion(){
+  const app = document.getElementById('app');
+  if(idx >= questions.length){
+    questions.forEach((q,i) => { if(correctFlags[i] && progress.masteredIds.indexOf(q.id) === -1) progress.masteredIds.push(q.id); });
+    progress.totalStars += score;
+    await saveProgress();
+    const ratio = score / questions.length;
+    const msg = ratio === 1 ? "全部集滿了,你是語言小超人!"
+      : ratio >= 0.6 ? "集了好多星星,你好棒!"
+      : "又前進了一步,繼續加油!";
+    app.innerHTML = `
+      <p style="font-size:22px; font-weight:600; margin:2rem 0 4px;">睿睿的集點卡</p>
+      <p style="font-size:15px; color:var(--text-muted); margin:0 0 20px;">${levelInfo[level].label}難度・累積總星數 ${progress.totalStars}</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:0 0 20px;">
+        ${correctFlags.map(f => starBadge(f)).join('')}
+      </div>
+      <p style="font-size:17px; font-weight:600; color:var(--warning-text); margin:0 0 24px;">${msg}</p>
+      <div style="display:flex; gap:10px; justify-content:center; padding-bottom:2rem;">
+        <button id="retry" style="padding:12px 22px; font-size:15px;">再玩一次</button>
+        <button id="changeLevel" style="padding:12px 22px; font-size:15px;">換難度</button>
+      </div>`;
+    document.getElementById('retry').onclick = () => { questions = pickQuestions(level); idx = 0; score = 0; correctFlags = []; renderQuestion(); };
+    document.getElementById('changeLevel').onclick = renderLevelSelect;
+    return;
+  }
+  const q = questions[idx];
+  answered = false;
+  const dots = questions.map((_,i) => `<div style="width:10px;height:10px;border-radius:50%;background:${i<idx?'var(--accent)':i===idx?'var(--text)':'var(--border)'};"></div>`).join('');
+  app.innerHTML = `
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:1rem 0 0.75rem;">
+      <span style="font-size:12px; color:var(--text-muted);">${levelInfo[level].label}難度</span>
+      <span style="font-size:13px; font-weight:600; color:var(--warning-text);">★ ${score}</span>
+    </div>
+    <div style="display:flex; gap:6px; justify-content:center; margin-bottom:1.5rem;">${dots}</div>
+    <div class="badge">${q.cat}</div>
+    <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:2rem;">
+      <button id="speakBtn" aria-label="播放語音" style="width:48px; height:48px; border-radius:50%; padding:0; font-size:20px;">🔊</button>
+      <p id="promptText" style="font-size:18px; font-weight:600; margin:0; padding:6px 10px; border-radius:6px; transition:background 0.2s;">${q.prompt}</p>
+    </div>
+    <div id="options" style="display:flex; flex-direction:column; gap:14px;">
+      ${q.options.map((opt,i) => `<button data-i="${i}" class="optBtn" style="height:64px; font-size:18px;">${opt}</button>`).join('')}
+    </div>
+    <div id="feedback" style="min-height:32px; margin-top:1.25rem; font-size:16px; font-weight:600;"></div>
+    <button id="nextBtn" style="margin-top:0.5rem; padding:10px 24px; font-size:15px; display:none;">下一題</button>
+    <div style="height:2rem;"></div>`;
+
+  document.getElementById('speakBtn').onclick = () => speak(q.prompt);
+  document.querySelectorAll('.optBtn').forEach(btn => {
+    btn.onclick = () => {
+      if(answered) return;
+      answered = true;
+      const i = Number(btn.dataset.i);
+      const fb = document.getElementById('feedback');
+      const correctBtn = document.querySelectorAll('.optBtn')[q.correct];
+      const isCorrect = i === q.correct;
+      correctFlags.push(isCorrect);
+      if(isCorrect){
+        score++;
+        btn.style.borderColor = 'var(--success)';
+        btn.style.background = 'var(--success-bg)';
+        fb.textContent = '答對了,獲得一顆星星!';
+        fb.style.color = 'var(--success)';
+        speak('答對了,獲得一顆星星!');
+      } else {
+        btn.style.borderColor = 'var(--warning-text)';
+        correctBtn.style.borderColor = 'var(--success)';
+        correctBtn.style.background = 'var(--success-bg)';
+        fb.textContent = '再想一次也沒關係';
+        fb.style.color = 'var(--warning-text)';
+        speak('再想一次也沒關係');
+      }
+      document.getElementById('nextBtn').style.display = 'inline-block';
+    };
+  });
+  document.getElementById('nextBtn').onclick = () => { idx++; renderQuestion(); };
+  speak(q.prompt);
+}
+
+(async function init(){
+  await loadProgress();
+  renderLevelSelect();
+})();
+</script>
+</body>
+</html>
