@@ -55,27 +55,45 @@ const BANK = {
     { id:"school-basic-5", cat:"需求表達", prompt:"你想加入遊戲,可以先做什麼?", options:["舉手或說話","直接搶玩具"], correct:0 },
     { id:"school-basic-6", cat:"情緒表達", prompt:"你覺得不舒服,你可以說什麼?", options:["我不舒服","我要睡覺"], correct:0 },
     { id:"school-basic-7", cat:"社交語用", prompt:"下課鐘響了,大家要做什麼?", options:["排隊出去","繼續坐著"], correct:0 },
-    { id:"school-basic-8", cat:"需求表達", prompt:"想喝水,你可以怎麼說?", options:["我可以喝水嗎","我不要"], correct:0 }
+    { id:"school-basic-8", cat:"需求表達", prompt:"想喝水,你可以怎麼說?", options:["我可以喝水嗎","我不要"], correct:0 },
+    { id:"school-basic-9", cat:"社交語用", prompt:"你想跟同學排隊,要排在誰後面?", options:["排在隊伍最後一個人後面","直接插到中間"], correct:0 },
+    { id:"school-basic-10", cat:"社交語用", prompt:"同學說我不要跟你玩,你可以怎麼做?", options:["去找別的同學或安靜坐下","生氣打同學"], correct:0 },
+    { id:"school-basic-11", cat:"情緒表達", prompt:"你想要安靜的角落,你可以說什麼?", options:["我想自己一個人待著","大聲尖叫"], correct:0 },
+    { id:"school-basic-12", cat:"社交語用", prompt:"你看到同學在哭,你可以怎麼做?", options:["走過去關心他","笑他"], correct:0 },
+    { id:"school-basic-13", cat:"社交語用", prompt:"老師問你聽懂了嗎,你不懂,你可以怎麼回答?", options:["我不懂","隨便點頭"], correct:0 },
+    { id:"school-basic-14", cat:"社交語用", prompt:"同學跟你借剪刀用完後,他會怎麼做?", options:["還給我","自己留著"], correct:0 }
   ],
   mid: [
-    { id:"school-mid-1", cat:"社交語用", prompt:"你想跟同學一起玩,你會說什麼?", options:["我可以跟你一起玩嗎","你走開"], correct:0 },
+    { id:"school-mid-1", cat:"社交語用", prompt:"你想跟同學一起玩,你會說什麼?", options:["我可以一起玩嗎","走開啦"], correct:0 },
     { id:"school-mid-2", cat:"社交語用", prompt:"要排隊玩溜滑梯,你應該怎麼做?", options:["跟著大家排隊等","插到前面去"], correct:0 },
     { id:"school-mid-3", cat:"情緒表達", prompt:"你不喜歡這個遊戲,你可以怎麼說?", options:["我不喜歡這個遊戲","我要打人"], correct:0 },
-    { id:"school-mid-4", cat:"社交語用", prompt:"同學借你蠟筆用,你會說什麼?", options:["謝謝你借我","你很笨"], correct:0 },
+    { id:"school-mid-4", cat:"社交語用", prompt:"同學借你蠟筆用,你會說什麼?", options:["太好了,謝謝","笨死了"], correct:0 },
     { id:"school-mid-5", cat:"需求表達", prompt:"你想要老師再說一次,你會說什麼?", options:["老師可以再說一次嗎","我不懂,算了"], correct:0 },
     { id:"school-mid-6", cat:"情緒表達", prompt:"有人碰到你,你不喜歡,你會說什麼?", options:["請不要碰我","什麼都不說,直接推他"], correct:0 },
     { id:"school-mid-7", cat:"社交語用", prompt:"同學說要一起玩,你也想玩,你會說什麼?", options:["好啊,我也想玩","我才不要"], correct:0 },
-    { id:"school-mid-8", cat:"情緒表達", prompt:"你今天很累不想玩遊戲,你會說什麼?", options:["我今天有點累,想休息一下","不理任何人"], correct:0 }
+    { id:"school-mid-8", cat:"情緒表達", prompt:"你今天很累不想玩遊戲,你會說什麼?", options:["我今天有點累,想休息一下","不理任何人"], correct:0 },
+    { id:"school-mid-9", cat:"社交語用", prompt:"你想跟同學一起排隊玩溜滑梯,你會說什麼?", options:["我可以一起排隊嗎","讓開啦"], correct:0 },
+    { id:"school-mid-10", cat:"情緒表達", prompt:"你不喜歡有人碰你的東西,你會怎麼說?", options:["請不要碰我的東西","直接打他的手"], correct:0 },
+    { id:"school-mid-11", cat:"社交語用", prompt:"同學一直插隊,你可以怎麼說?", options:["請排隊,不要插隊","什麼都不說,自己生氣"], correct:0 },
+    { id:"school-mid-12", cat:"社交語用", prompt:"你想要換一個遊戲玩,你會說什麼?", options:["我們可以玩別的遊戲嗎","我不玩了"], correct:0 },
+    { id:"school-mid-13", cat:"情緒表達", prompt:"你覺得教室太吵,你會怎麼說?", options:["這裡太吵了,我可以去安靜的地方嗎","摀住耳朵尖叫"], correct:0 },
+    { id:"school-mid-14", cat:"社交語用", prompt:"同學一直看著你不說話,你會怎麼做?", options:["主動問他要不要一起玩","低頭不理他"], correct:0 }
   ],
   causal: [
     { id:"school-causal-1", cat:"因果關係", prompt:"小安在排隊的時候插隊,後面的同學會有什麼感覺?", options:["生氣","開心"], correct:0 },
-    { id:"school-causal-2", cat:"因果關係", prompt:"你跟同學說可以一起玩嗎,同學說好,接下來會發生什麼事?", options:["你們可以一起玩","你要自己走開"], correct:0 },
-    { id:"school-causal-3", cat:"因果關係", prompt:"因為你告訴同學你不喜歡這個遊戲,所以他可能會怎麼做?", options:["換一個你們都喜歡的遊戲","生氣罵你"], correct:0 },
+    { id:"school-causal-2", cat:"因果關係", prompt:"你跟同學說可以一起玩嗎,同學說好,接下來會發生什麼事?", options:["兩個人可以一起玩","沒辦法一起玩"], correct:0 },
+    { id:"school-causal-3", cat:"因果關係", prompt:"因為你告訴同學你不喜歡這個遊戲,所以他可能會怎麼做?", options:["換一個大家都喜歡的遊戲","對我生氣"], correct:0 },
     { id:"school-causal-4", cat:"因果關係", prompt:"同學一直搶你的玩具,你跟老師說了,所以老師會怎麼做?", options:["幫忙處理,提醒同學要輪流","什麼都不管"], correct:0 },
     { id:"school-causal-5", cat:"因果關係", prompt:"因為你排隊排得很整齊,所以你會比較快輪到什麼?", options:["玩到溜滑梯","被叫去罰站"], correct:0 },
     { id:"school-causal-6", cat:"因果關係", prompt:"你直接搶了同學的畫筆,所以同學的心情會怎麼樣?", options:["難過或生氣","很開心"], correct:0 },
-    { id:"school-causal-7", cat:"因果關係", prompt:"你跟同學說謝謝之後,同學下次可能會怎麼做?", options:["更願意再借你東西","以後都不理你"], correct:0 },
-    { id:"school-causal-8", cat:"因果關係", prompt:"因為你先問可以跟他一起玩嗎,所以比較容易發生什麼事?", options:["順利一起玩","被拒絕生氣"], correct:0 }
+    { id:"school-causal-7", cat:"因果關係", prompt:"你跟同學說謝謝之後,同學下次可能會怎麼做?", options:["更願意再借我東西","以後都不理我"], correct:0 },
+    { id:"school-causal-8", cat:"因果關係", prompt:"因為你先問可以跟他一起玩嗎,所以比較容易發生什麼事?", options:["順利一起玩","被拒絕生氣"], correct:0 },
+    { id:"school-causal-9", cat:"因果關係", prompt:"因為你排隊排得很好,老師稱讚了你,所以你的心情會怎麼樣?", options:["開心","難過"], correct:0 },
+    { id:"school-causal-10", cat:"因果關係", prompt:"你告訴同學我不喜歡被打斷,所以同學接下來可能會怎麼做?", options:["說話前先等我講完","繼續打斷我"], correct:0 },
+    { id:"school-causal-11", cat:"因果關係", prompt:"同學一直插隊,大家都在等,所以隊伍會變得怎麼樣?", options:["大家心情不好、隊伍變亂","大家都很開心"], correct:0 },
+    { id:"school-causal-12", cat:"因果關係", prompt:"因為你先跟同學說我可以加入嗎,所以同學比較容易怎麼回答?", options:["好啊,一起玩","直接說不要"], correct:0 },
+    { id:"school-causal-13", cat:"因果關係", prompt:"你今天很累,跟老師說了,所以老師會怎麼做?", options:["讓我休息一下","要求我繼續跑跳"], correct:0 },
+    { id:"school-causal-14", cat:"因果關係", prompt:"因為你安慰了哭泣的同學,所以他的心情會怎麼樣?", options:["慢慢變好","更難過"], correct:0 }
   ]
 };
 const SESSION_LENGTH = 8;
