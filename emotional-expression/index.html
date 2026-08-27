@@ -57,7 +57,12 @@ const BANK = {
     { id:"emo-basic-7", cat:"情緒表達", prompt:"生氣的時候,可以用什麼代替打人?", options:["說出來或深呼吸","打人"], correct:0 },
     { id:"emo-basic-8", cat:"情緒表達", prompt:"生氣的時候,手可以怎麼放?", options:["放在身體兩旁或抱住自己","揮拳頭打人"], correct:0 },
     { id:"emo-basic-9", cat:"情緒表達", prompt:"覺得快要生氣的時候,可以先做什麼?", options:["深呼吸","立刻尖叫"], correct:0 },
-    { id:"emo-basic-10", cat:"情緒表達", prompt:"覺得難過的時候,可以怎麼做?", options:["告訴大人","自己躲起來不說"], correct:0 }
+    { id:"emo-basic-10", cat:"情緒表達", prompt:"覺得難過的時候,可以怎麼做?", options:["告訴大人","自己躲起來不說"], correct:0 },
+    { id:"emo-basic-11", cat:"情緒表達", prompt:"覺得很生氣,除了深呼吸,還可以抱著什麼讓自己冷靜?", options:["抱枕頭或娃娃","打旁邊的人"], correct:0 },
+    { id:"emo-basic-12", cat:"情緒表達", prompt:"覺得快要生氣了,可以去哪裡讓自己冷靜?", options:["安靜的角落","衝去打人"], correct:0 },
+    { id:"emo-basic-13", cat:"情緒表達", prompt:"覺得很生氣,除了說出來,還可以請誰幫忙?", options:["大人或老師","自己一直悶著"], correct:0 },
+    { id:"emo-basic-14", cat:"情緒表達", prompt:"覺得難過,可以抱著什麼讓自己好一點?", options:["抱枕頭或娃娃","打旁邊的東西"], correct:0 },
+    { id:"emo-basic-15", cat:"情緒表達", prompt:"覺得生氣的時候,可以喝一口什麼讓自己冷靜?", options:["水","一直尖叫"], correct:0 }
   ],
   mid: [
     { id:"emo-mid-1", cat:"情緒表達", prompt:"覺得很生氣,可以怎麼說?", options:["我很生氣","打人"], correct:0 },
@@ -69,19 +74,29 @@ const BANK = {
     { id:"emo-mid-7", cat:"情緒表達", prompt:"覺得很開心,可以怎麼說?", options:["我好開心","我好生氣"], correct:0 },
     { id:"emo-mid-8", cat:"情緒表達", prompt:"得到想要的東西,很開心,可以怎麼說?", options:["謝謝,我好喜歡","生氣尖叫"], correct:0 },
     { id:"emo-mid-9", cat:"情緒表達", prompt:"覺得很難過,可以怎麼說?", options:["我好難過","我好開心"], correct:0 },
-    { id:"emo-mid-10", cat:"情緒表達", prompt:"難過想哭的時候,可以怎麼說?", options:["我覺得難過,我需要抱抱","自己躲起來不說"], correct:0 }
+    { id:"emo-mid-10", cat:"情緒表達", prompt:"難過想哭的時候,可以怎麼說?", options:["我覺得難過,我需要抱抱","自己躲起來不說"], correct:0 },
+    { id:"emo-mid-11", cat:"情緒表達", prompt:"覺得很生氣,除了說出來,還可以怎麼做讓自己冷靜?", options:["去安靜的角落待一下","衝過去推人"], correct:0 },
+    { id:"emo-mid-12", cat:"情緒表達", prompt:"覺得快要生氣了,可以怎麼說,請大人幫忙?", options:["我需要幫忙冷靜一下","什麼都不說直接動手"], correct:0 },
+    { id:"emo-mid-13", cat:"情緒表達", prompt:"覺得生氣的時候,可以怎麼用身體釋放力氣?", options:["用力跳一跳或抱緊枕頭","用力打人"], correct:0 },
+    { id:"emo-mid-14", cat:"情緒表達", prompt:"覺得難過的時候,除了說出來,還可以怎麼做?", options:["抱著喜歡的娃娃休息一下","一直悶著不說"], correct:0 },
+    { id:"emo-mid-15", cat:"情緒表達", prompt:"覺得生氣快要爆炸的時候,可以怎麼說,幫自己爭取時間冷靜?", options:["我可以先離開一下嗎","直接動手打人"], correct:0 }
   ],
   causal: [
-    { id:"emo-causal-1", cat:"因果關係", prompt:"因為他生氣就打人,所以會發生什麼事?", options:["別人會受傷、生氣或難過","大家會很開心"], correct:0 },
-    { id:"emo-causal-2", cat:"因果關係", prompt:"因為他生氣的時候先深呼吸,沒有打人,所以接下來會怎麼樣?", options:["心情慢慢平靜下來","還是一直生氣打人"], correct:0 },
-    { id:"emo-causal-3", cat:"因果關係", prompt:"因為他說我很生氣,而不是打人,所以朋友會怎麼看他?", options:["願意繼續跟他玩","害怕不敢靠近他"], correct:0 },
-    { id:"emo-causal-4", cat:"因果關係", prompt:"打人之後,老師會怎麼做?", options:["提醒他要用說的,不要用打的","稱讚他做得很好"], correct:0 },
-    { id:"emo-causal-5", cat:"因果關係", prompt:"因為他每次生氣都先數到十再說話,所以慢慢會怎麼樣?", options:["比較不容易打人","打人打得更用力"], correct:0 },
-    { id:"emo-causal-6", cat:"因果關係", prompt:"因為他生氣的時候先離開現場冷靜,所以打人的機會會怎麼樣?", options:["變少","變多"], correct:0 },
-    { id:"emo-causal-7", cat:"因果關係", prompt:"因為他學會用說的表達生氣,不再打人,所以他自己心裡會覺得怎麼樣?", options:["比較有自信,比較不會後悔","覺得更委屈"], correct:0 },
-    { id:"emo-causal-8", cat:"因果關係", prompt:"因為他每次生氣都能用說的表達,所以老師會怎麼看他?", options:["覺得他進步了、更棒了","覺得他還是很難管教"], correct:0 },
-    { id:"emo-causal-9", cat:"因果關係", prompt:"因為他很開心地跟大家分享玩具,所以朋友會怎麼看他?", options:["更喜歡跟他玩","不想理他"], correct:0 },
-    { id:"emo-causal-10", cat:"因果關係", prompt:"因為他難過的時候說出我需要抱抱,所以家人會怎麼做?", options:["過來抱抱他、安慰他","什麼都不做"], correct:0 }
+    { id:"emo-causal-1", cat:"因果關係", prompt:"因為生氣就打人,所以會發生什麼事?", options:["別人會受傷、生氣或難過","大家會很開心"], correct:0 },
+    { id:"emo-causal-2", cat:"因果關係", prompt:"因為生氣的時候先深呼吸,沒有打人,所以接下來會怎麼樣?", options:["心情慢慢平靜下來","還是一直生氣打人"], correct:0 },
+    { id:"emo-causal-3", cat:"因果關係", prompt:"因為說出我很生氣,而不是打人,所以朋友會有什麼反應?", options:["願意繼續跟我玩","害怕不敢靠近我"], correct:0 },
+    { id:"emo-causal-4", cat:"因果關係", prompt:"打人之後,老師會怎麼做?", options:["提醒我要用說的,不要用打的","稱讚我做得很好"], correct:0 },
+    { id:"emo-causal-5", cat:"因果關係", prompt:"因為每次生氣都先數到十再說話,所以慢慢會怎麼樣?", options:["比較不容易打人","打人打得更用力"], correct:0 },
+    { id:"emo-causal-6", cat:"因果關係", prompt:"因為生氣的時候先離開現場冷靜,所以打人的機會會怎麼樣?", options:["變少","變多"], correct:0 },
+    { id:"emo-causal-7", cat:"因果關係", prompt:"因為學會用說的表達生氣,不再打人,所以心裡會覺得怎麼樣?", options:["比較有自信,比較不會後悔","覺得更委屈"], correct:0 },
+    { id:"emo-causal-8", cat:"因果關係", prompt:"因為每次生氣都能用說的表達,所以老師會有什麼反應?", options:["覺得我進步了、更棒了","覺得我還是很難管教"], correct:0 },
+    { id:"emo-causal-9", cat:"因果關係", prompt:"因為很開心地跟大家分享玩具,所以朋友會有什麼反應?", options:["更喜歡跟我玩","不想理我"], correct:0 },
+    { id:"emo-causal-10", cat:"因果關係", prompt:"因為難過的時候說出我需要抱抱,所以家人會怎麼做?", options:["過來抱抱我、安慰我","什麼都不做"], correct:0 },
+    { id:"emo-causal-11", cat:"因果關係", prompt:"因為生氣的時候去安靜角落待一下,所以還會不會打人?", options:["不會,先冷靜下來了","還是會馬上打人"], correct:0 },
+    { id:"emo-causal-12", cat:"因果關係", prompt:"因為請大人幫忙一起冷靜,所以結果會怎麼樣?", options:["情緒慢慢穩定下來","情緒還是一直很失控"], correct:0 },
+    { id:"emo-causal-13", cat:"因果關係", prompt:"因為生氣的時候抱緊枕頭而不是打人,所以旁邊的人會怎麼樣?", options:["不會受傷","還是會被打到"], correct:0 },
+    { id:"emo-causal-14", cat:"因果關係", prompt:"因為用跳一跳的方式釋放生氣的力氣,所以最後手會不會打到別人?", options:["不會","會"], correct:0 },
+    { id:"emo-causal-15", cat:"因果關係", prompt:"因為學會用很多不同的方法讓自己冷靜(深呼吸、喝水、離開現場),所以生氣時打人的次數會怎麼樣?", options:["慢慢變少","一直不變"], correct:0 }
   ]
 };
 const SESSION_LENGTH = 10;
